@@ -1,0 +1,17 @@
+# filepath: /fiscobos_demo/fiscobos_demo/config/fiscobos_config.toml
+
+[network]
+provider = "http://localhost:8545"
+chain_id = 1
+
+[contracts]
+product_trace_address = "0xYourProductTraceContractAddress"
+supply_chain_address = "0xYourSupplyChainContractAddress"
+agri_token_address = "0xYourAgriTokenContractAddress"
+
+[database]
+db_path = "sqlite:///path/to/your/database.db"
+
+[logging]
+level = "INFO"
+file = "logs/fiscobos.log"

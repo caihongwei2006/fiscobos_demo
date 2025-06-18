@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Product Traceability System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Agricultural Product Traceability System</h1>
+    </header>
+    <main>
+        <section>
+            <h2>About</h2>
+            <p>This system allows users to trace agricultural products from farm to table, ensuring transparency and authenticity in the supply chain.</p>
+        </section>
+        <section>
+            <h2>Features</h2>
+            <ul>
+                <li>Traceability of products</li>
+                <li>Supplier management</li>
+                <li>Transaction history</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Get Started</h2>
+            <p>To begin tracing a product, please enter the product ID below:</p>
+            <input type="text" id="productId" placeholder="Enter Product ID">
+            <button id="traceButton">Trace Product</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Agricultural Product Traceability System</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

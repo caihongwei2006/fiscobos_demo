@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Product Details</h1>
+        <div id="product-info">
+            <h2>{{ product.name }}</h2>
+            <p><strong>Product ID:</strong> {{ product.id }}</p>
+            <p><strong>Description:</strong> {{ product.description }}</p>
+            <p><strong>Origin:</strong> {{ product.origin }}</p>
+            <p><strong>Supplier:</strong> {{ product.supplier }}</p>
+            <p><strong>Traceability:</strong> <a href="{{ url_for('trace_product', product_id=product.id) }}">View Trace</a></p>
+        </div>
+        <button onclick="window.history.back();">Back</button>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

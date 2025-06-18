@@ -1,0 +1,12 @@
+{
+  "rpc_endpoint": "http://localhost:8545",
+  "network_id": "5777",
+  "contract_addresses": {
+    "ProductTrace": "0xYourProductTraceContractAddress",
+    "SupplyChain": "0xYourSupplyChainContractAddress",
+    "AgriToken": "0xYourAgriTokenContractAddress"
+  },
+  "database": {
+    "path": "sqlite:///path/to/your/database.db"
+  }
+}
