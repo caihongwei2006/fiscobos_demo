@@ -50,4 +50,31 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Error adding product.');
         });
     });
+
+    const registerButton = document.getElementById('register-transaction-button');
+    if (registerButton) {
+        registerButton.addEventListener('click', function() {
+            const payload = {
+                buyer: document.getElementById('buyer').value,
+                seller: document.getElementById('seller').value,
+                product: document.getElementById('product').value
+            };
+
+            fetch('/api/transactions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Transaction registered. Tx hash: ' + (data.tx_hash || 'N/A'));
+            })
+            .catch(error => {
+                console.error('Error registering transaction:', error);
+                alert('Error registering transaction.');
+            });
+        });
+    }
 });
