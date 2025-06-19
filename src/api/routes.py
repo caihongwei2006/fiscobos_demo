@@ -1,5 +1,15 @@
 from flask import Blueprint, request, jsonify
 from .controllers import ProductController
+from ..blockchain.fiscobos_client import FiscobosClient
+from ..database.db_manager import DatabaseManager
+import json
+
+# initialize blockchain client and database manager
+with open('config/node_config.json') as f:
+    node_cfg = json.load(f)
+
+client = FiscobosClient(node_cfg['rpc_endpoint'], node_cfg['contract_addresses'])
+db = DatabaseManager('database/products.db')
 
 api = Blueprint('api', __name__)
 
@@ -37,3 +47,22 @@ def trace_product(product_id):
     if trace_info:
         return jsonify(trace_info), 200
     return jsonify({'error': 'Trace information not found'}), 404
+
+@api.route('/transactions', methods=['POST'])
+def register_transaction():
+    data = request.json or {}
+    buyer = data.get('buyer')
+    seller = data.get('seller')
+    product = data.get('product')
+
+    if not all([buyer, seller, product]):
+        return jsonify({'error': 'buyer, seller and product are required'}), 400
+
+    try:
+        tx_hash = client.send_transaction('SupplyChain', 'registerTransaction', buyer, seller, product)
+    except Exception:
+        tx_hash = None
+
+    db.add_trade_record(buyer, seller, product, tx_hash)
+    return jsonify({'tx_hash': tx_hash}), 201
+

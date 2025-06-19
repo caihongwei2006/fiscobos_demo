@@ -23,3 +23,11 @@ CREATE TABLE transactions (
     FOREIGN KEY (product_id) REFERENCES products (id),
     FOREIGN KEY (supplier_id) REFERENCES suppliers (id)
 );
+CREATE TABLE trade_records (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    buyer TEXT NOT NULL,
+    seller TEXT NOT NULL,
+    product TEXT NOT NULL,
+    tx_hash TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

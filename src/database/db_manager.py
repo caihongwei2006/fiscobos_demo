@@ -36,3 +36,10 @@ class DatabaseManager:
         """Close the database connection."""
         if self.connection:
             self.connection.close()
+
+    def add_trade_record(self, buyer, seller, product, tx_hash=None):
+        """Insert a trade record into the database."""
+        query = (
+            "INSERT INTO trade_records (buyer, seller, product, tx_hash) VALUES (?, ?, ?, ?)"
+        )
+        return self.execute_query(query, (buyer, seller, product, tx_hash))
